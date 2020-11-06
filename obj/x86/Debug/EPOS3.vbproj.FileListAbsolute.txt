@@ -1,0 +1,9 @@
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\bin\Debug\EPOS3.exe
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\bin\Debug\EPOS3.pdb
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\bin\Debug\EPOS3.xml
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.Products.resources
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.Resources.resources
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.vbproj.GenerateResource.Cache
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.exe
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.xml
+c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.pdb

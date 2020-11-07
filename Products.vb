@@ -67,14 +67,18 @@ Public Class Products
             If item.Type = EPOS3.Item.ItemType.Item Then
                 button.Text = item.PathOrName.Split("^")(1)
             Else
-                Console.WriteLine(item.ToString())
                 If item.ToString().Split("^").Length > 2 Then
                     button.Text = item.PathOrName.Split("^")(2)
                 Else
                     button.Text = item.ToString().Split("^")(1).Substring(0, item.PathOrName.Length - 5)
                 End If
             End If
-            button.Tag = button.Tag.ToString.Substring(0, 1) + "^" + If(item.Type = EPOS3.Item.ItemType.Item, "item", "page") + "^" + item.PathOrName.Split("^")(0)
+
+            If item.Type = EPOS3.Item.ItemType.Item Then
+                button.Tag = button.Tag.ToString.Substring(0, 1) + "^" + "item" + "^" + item.PathOrName.Split("^")(0)
+            Else
+                button.Tag = button.Tag.ToString.Substring(0, 1) + "^" + item.ToString()
+            End If
         Next
 
         If CurrentPage.Items.Count = 0 Then
@@ -110,7 +114,7 @@ Public Class Products
 
     ' Last button, set the page number to the amount of pages that exist (-1 for coding purposes).
     Private Sub btnLast_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLast.Click
-        CurrentPage.PageNumber = (Math.Ceiling(CurrentPage.Items.Count / 9) - 1)
+        CurrentPage.PageNumber = Math.Ceiling(CurrentPage.Items.Count / 9) - 1
         LoadPage()
     End Sub
 
@@ -122,7 +126,7 @@ Public Class Products
         If buttonTagParts(1) = "item" Then
             dataBasket.Rows.Add(New Object() {button.Text})
         ElseIf buttonTagParts(1) = "page" Then
-            Console.WriteLine(buttonTagParts)
+            LoadPage(New Page(buttonTagParts(2)))
         End If
     End Sub
 End Class

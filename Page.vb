@@ -26,12 +26,22 @@ Public Class Page
                 Continue For
             End If
 
+
+
             Dim type As EPOS3.Item.ItemType = If(Parts(0).ToLower() = "item", EPOS3.Item.ItemType.Item, EPOS3.Item.ItemType.Page)
             Dim pathorname = If(type = EPOS3.Item.ItemType.Item, Parts(1) + "^" + Utility.LookupProduct(Parts(1)).PathOrName, Item.Split("^")(0) + "^" + Item.Split("^")(1))
 
             If type = EPOS3.Item.ItemType.Page And Parts.Length > 2 Then
                 pathorname += "^" + Parts(2)
             End If
+
+            If type = EPOS3.Item.ItemType.Item Then
+                Dim product = Utility.LookupProduct(Item.Split("^")(1))
+                If product.PathOrName.Split("^").Length > 2 Then
+                    pathorname += "^" + product.PathOrName.Split("^")(2)
+                End If
+            End If
+
             Items.Add(New Item(type, pathorname))
         Next
     End Sub

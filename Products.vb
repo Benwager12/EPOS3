@@ -120,13 +120,24 @@ Public Class Products
 
     ' If the button is a item then it adds it to the basket, if it's a page, it goes to it.
     Private Sub btnProd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProd1.Click, btnProd2.Click, btnProd3.Click, btnProd4.Click, btnProd5.Click, btnProd6.Click, btnProd7.Click, btnProd8.Click, btnProd9.Click
-        Dim button As Button = CType(sender, Button)
-        Dim buttonTagParts() As String = button.Tag.ToString.Split("^")
+        Dim buttonTagParts() As String = CType(sender, Button).Tag.ToString.Split("^")
 
-        If buttonTagParts(1) = "item" Then
-            dataBasket.Rows.Add(New Object() {button.Text})
-        ElseIf buttonTagParts(1) = "page" Then
-            LoadPage(New Page(buttonTagParts(2)))
-        End If
+        Select Case buttonTagParts(1)
+            Case "item"
+                AddItemToBasket(CInt(buttonTagParts(2)))
+            Case "page"
+                LoadPage(New Page(buttonTagParts(2)))
+        End Select
+    End Sub
+
+    '' TODO: Comment
+    Private Sub AddItemToBasket(ByVal index As Integer)
+        Dim info() As String = Utility.LookupProduct(index).PathOrName.Split("^")
+        Dim name As String = info(If(info.Length > 2, 2, 0))
+        dataBasket.Rows.Add(New Object() {name})
+    End Sub
+
+    Private Sub btnIndex_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIndex.Click
+        LoadPage(New Page("index.page"))
     End Sub
 End Class

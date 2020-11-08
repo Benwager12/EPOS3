@@ -39,6 +39,7 @@ Partial Class Products
         Me.lblNoProducts = New System.Windows.Forms.Label()
         Me.dataBasket = New System.Windows.Forms.DataGridView()
         Me.productName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnIndex = New System.Windows.Forms.Button()
         CType(Me.dataBasket, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -207,7 +208,7 @@ Partial Class Products
         Me.dataBasket.Location = New System.Drawing.Point(630, 12)
         Me.dataBasket.Name = "dataBasket"
         Me.dataBasket.ReadOnly = True
-        Me.dataBasket.Size = New System.Drawing.Size(213, 266)
+        Me.dataBasket.Size = New System.Drawing.Size(213, 225)
         Me.dataBasket.TabIndex = 15
         '
         'productName
@@ -217,12 +218,22 @@ Partial Class Products
         Me.productName.Name = "productName"
         Me.productName.ReadOnly = True
         '
+        'btnIndex
+        '
+        Me.btnIndex.Location = New System.Drawing.Point(630, 243)
+        Me.btnIndex.Name = "btnIndex"
+        Me.btnIndex.Size = New System.Drawing.Size(213, 34)
+        Me.btnIndex.TabIndex = 16
+        Me.btnIndex.Text = "Go to Index"
+        Me.btnIndex.UseVisualStyleBackColor = True
+        '
         'Products
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(855, 396)
+        Me.Controls.Add(Me.btnIndex)
         Me.Controls.Add(Me.dataBasket)
         Me.Controls.Add(Me.lblNoProducts)
         Me.Controls.Add(Me.txtPageNumber)
@@ -265,5 +276,6 @@ Partial Class Products
     Friend WithEvents lblNoProducts As System.Windows.Forms.Label
     Friend WithEvents dataBasket As System.Windows.Forms.DataGridView
     Friend Shadows WithEvents productName As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btnIndex As System.Windows.Forms.Button
 
 End Class

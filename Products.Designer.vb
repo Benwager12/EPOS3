@@ -38,8 +38,11 @@ Partial Class Products
         Me.txtPageNumber = New System.Windows.Forms.TextBox()
         Me.lblNoProducts = New System.Windows.Forms.Label()
         Me.dataBasket = New System.Windows.Forms.DataGridView()
-        Me.productName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnIndex = New System.Windows.Forms.Button()
+        Me.lblFullPrice = New System.Windows.Forms.Label()
+        Me.index = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.productName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dataBasket, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -204,19 +207,13 @@ Partial Class Products
         Me.dataBasket.AllowUserToAddRows = False
         Me.dataBasket.AllowUserToDeleteRows = False
         Me.dataBasket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dataBasket.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.productName})
+        Me.dataBasket.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.index, Me.productName, Me.Price})
         Me.dataBasket.Location = New System.Drawing.Point(630, 12)
         Me.dataBasket.Name = "dataBasket"
         Me.dataBasket.ReadOnly = True
+        Me.dataBasket.RowHeadersVisible = False
         Me.dataBasket.Size = New System.Drawing.Size(213, 225)
         Me.dataBasket.TabIndex = 15
-        '
-        'productName
-        '
-        Me.productName.Frozen = True
-        Me.productName.HeaderText = "Product Name"
-        Me.productName.Name = "productName"
-        Me.productName.ReadOnly = True
         '
         'btnIndex
         '
@@ -227,12 +224,51 @@ Partial Class Products
         Me.btnIndex.Text = "Go to Index"
         Me.btnIndex.UseVisualStyleBackColor = True
         '
+        'lblFullPrice
+        '
+        Me.lblFullPrice.AutoSize = True
+        Me.lblFullPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFullPrice.Location = New System.Drawing.Point(378, 297)
+        Me.lblFullPrice.Name = "lblFullPrice"
+        Me.lblFullPrice.Size = New System.Drawing.Size(68, 73)
+        Me.lblFullPrice.TabIndex = 18
+        Me.lblFullPrice.Text = "0"
+        '
+        'index
+        '
+        Me.index.FillWeight = 40.0!
+        Me.index.Frozen = True
+        Me.index.HeaderText = "Index"
+        Me.index.Name = "index"
+        Me.index.ReadOnly = True
+        Me.index.Width = 40
+        '
+        'productName
+        '
+        Me.productName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.productName.FillWeight = 10.0!
+        Me.productName.Frozen = True
+        Me.productName.HeaderText = "Product Name"
+        Me.productName.Name = "productName"
+        Me.productName.ReadOnly = True
+        Me.productName.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'Price
+        '
+        Me.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.Price.FillWeight = 50.0!
+        Me.Price.HeaderText = "Price"
+        Me.Price.Name = "Price"
+        Me.Price.ReadOnly = True
+        Me.Price.Width = 56
+        '
         'Products
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(855, 396)
+        Me.Controls.Add(Me.lblFullPrice)
         Me.Controls.Add(Me.btnIndex)
         Me.Controls.Add(Me.dataBasket)
         Me.Controls.Add(Me.lblNoProducts)
@@ -275,7 +311,10 @@ Partial Class Products
     Friend WithEvents txtPageNumber As System.Windows.Forms.TextBox
     Friend WithEvents lblNoProducts As System.Windows.Forms.Label
     Friend WithEvents dataBasket As System.Windows.Forms.DataGridView
-    Friend Shadows WithEvents productName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnIndex As System.Windows.Forms.Button
+    Friend WithEvents lblFullPrice As System.Windows.Forms.Label
+    Friend WithEvents index As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend Shadows WithEvents productName As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Price As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

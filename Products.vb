@@ -134,10 +134,23 @@ Public Class Products
     Private Sub AddItemToBasket(ByVal index As Integer)
         Dim info() As String = Utility.LookupProduct(index).PathOrName.Split("^")
         Dim name As String = info(If(info.Length > 2, 2, 0))
-        dataBasket.Rows.Add(New Object() {name})
+        dataBasket.Rows.Add(New Object() {index, name, "£" + CStr(String.Format("{0:0.00}", CDbl(info(1))))})
+
+        lblFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text) + CDbl(info(1)))
     End Sub
 
     Private Sub btnIndex_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIndex.Click
         LoadPage(New Page("index.page"))
+    End Sub
+
+    Private Sub dataBasket_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dataBasket.CellDoubleClick
+        If e.RowIndex < 0 Or e.ColumnIndex < 0 Then
+            Return
+        End If
+
+        Dim selectedRow = dataBasket.Rows(e.RowIndex)
+        Console.WriteLine("Removed """ + selectedRow.Cells(1).Value + """.")
+        dataBasket.Rows.RemoveAt(e.RowIndex)
+        lblFullPrice.Text = CDbl(lblFullPrice.Text) - CDbl(selectedRow.Cells(2).Value.Remove(0, 1))
     End Sub
 End Class

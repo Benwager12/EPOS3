@@ -1,14 +1,15 @@
 ﻿Imports System.IO
 
+
 Public Class Products
 
-    ' The number of buttons visible to the user.
+    '' The number of buttons visible to the user.
     Private productsVisible As Integer = 0
 
-    ' Get an instance of the database table named "Login".
+    '' Get an instance of the database table named "Login".
     Private Login As Database = New Database("Login")
 
-    ' An instance of the page so I can make the page change quickly without having to back reference.
+    '' An instance of the page so I can make the page change quickly without having to back reference.
     Private CurrentPage As Page
 
     Private Sub Products_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -18,22 +19,34 @@ Public Class Products
             Console.WriteLine("Created products folder.")
         End If
 
-        ' Make a index page if it doesn't exist and send a message to the console.
+        '' Make a index page if it doesn't exist and send a message to the console.
         If Not File.Exists("Products/index.page") Then
             File.Create("Products/index.page")
             Console.WriteLine("Created index page.")
         End If
 
-        ' Make an empty products file if it doesn't exist and send a message to the console.
+        '' Make an empty products file if it doesn't exist and send a message to the console.
         If Not File.Exists("Products/products.prod") Then
             File.Create("Products/products.prod")
             Console.WriteLine("Created products file.")
         End If
 
-        ' Load all the products out of the products file (important to do after products file is created)
+        '' Load all the products out of the products file (important to do after products file is created)
         Utility.LoadProducts()
 
-        ' Make an instance of the index and load it.
+        If Not File.Exists("Products/deals.deal") Then
+            File.Create("Products/deals.deal")
+            Console.WriteLine("Created deals file.")
+        End If
+
+        '' Load all of the deals within the program.
+        Utility.LoadDeals()
+
+        For Each D As Deal In Utility.GetDeals()
+            Console.WriteLine(D.ExecuteOutput())
+        Next
+
+        '' Make an instance of the index and load it.
         LoadPage(New Page("index.page^Index"))
     End Sub
 
@@ -44,15 +57,15 @@ Public Class Products
         lblNoProducts.Visible = (productsVisible = 0)
     End Sub
 
-    ' If a page is specified, then the current page is set and then we move onto main code.
+    '' If a page is specified, then the current page is set and then we move onto main code.
     Private Sub LoadPage(ByVal Page As Page)
         CurrentPage = Page
         LoadPage()
     End Sub
 
-    ' Cycles through each button and uses some math to figure which products are on that page. If there are no products
-    ' in this page at all, it will simply print the line "You have no products on your page." and Return, otherwise, it'll
-    ' set the text of the page number. It will then go on to enabling the first, previous, next and last button.
+    '' Cycles through each button and uses some math to figure which products are on that page. If there are no products
+    '' in this page at all, it will simply print the line "You have no products on your page." and Return, otherwise, it'll
+    '' set the text of the page number. It will then go on to enabling the first, previous, next and last button.
     Private Sub LoadPage()
         For Index As Integer = 1 To 9
             Dim button As Button = CType(Controls("btnProd" + CStr(Index)), Button)
@@ -130,7 +143,7 @@ Public Class Products
         End Select
     End Sub
 
-    '' TODO: Comment
+    '' Add item to basket and update the price
     Private Sub AddItemToBasket(ByVal index As Integer)
         Dim info() As String = Utility.LookupProduct(index).PathOrName.Split("^")
         Dim name As String = info(If(info.Length > 2, 2, 0))
@@ -143,14 +156,21 @@ Public Class Products
         LoadPage(New Page("index.page"))
     End Sub
 
+    '' When a cell is double clicked, remove the row and detract the price.
     Private Sub dataBasket_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dataBasket.CellDoubleClick
         If e.RowIndex < 0 Or e.ColumnIndex < 0 Then
             Return
         End If
 
         Dim selectedRow = dataBasket.Rows(e.RowIndex)
-        Console.WriteLine("Removed """ + selectedRow.Cells(1).Value + """.")
+        'Console.WriteLine("Removed """ + selectedRow.Cells(1).Value + """.")
         dataBasket.Rows.RemoveAt(e.RowIndex)
-        lblFullPrice.Text = CDbl(lblFullPrice.Text) - CDbl(selectedRow.Cells(2).Value.Remove(0, 1))
+        lblFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text) - CDbl(selectedRow.Cells(2).Value.Remove(0, 1)))
+    End Sub
+
+    Private Sub EvaluateDeals()
+        For Each Item As Deal In Utility.GetDeals()
+
+        Next
     End Sub
 End Class

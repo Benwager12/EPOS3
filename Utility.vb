@@ -1,6 +1,9 @@
 ﻿Imports System.IO
+Imports EPOS3.Products
 
 Public Class Utility
+
+    Public Shared ProductsInstance As Products
 
     '' Products array
     Private Shared Products() As String
@@ -39,5 +42,28 @@ Public Class Utility
     '' Returns the deals, mostly used for iteration through them.
     Public Shared Function GetDeals() As List(Of Deal)
         Return Deals
+    End Function
+
+    Public Shared Function ReplaceItemString(ByVal input As String) As String
+        Dim matches As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(input, "item\[([0-9]*)] (amt|test)") ' Look for any of this in regex, works for my conditional
+
+        For Each match As System.Text.RegularExpressions.Match In matches ' Loop through matches
+            Dim id As Integer = CDbl(match.Groups.Item(1).Value) ' The id of the item
+            Dim replaceSection As String = System.Text.RegularExpressions.Regex.Matches(match.Value, "item\[([0-9]*)]").Item(0).Value ' The section I need to replace
+
+            If match.Groups.Item(2).Value = "amt" Then
+                input = input.Replace(replaceSection + " amt", FindAmountID(id)) ' Replacing item index with 3 (placeholder until I get a lookup)
+            End If
+        Next
+        Return input
+    End Function
+
+    Public Shared Function FindAmountID(ByVal ID As Integer) As Integer
+        Dim amount = 0
+        For Each Item As DataGridViewRow In ProductsInstance.dataBasket.Rows
+            Dim cellID = Item.Cells(0).Value
+            amount -= CInt(CInt(cellID) = ID) ' Some cool shorthand
+        Next
+        Return amount
     End Function
 End Class

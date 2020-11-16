@@ -2,7 +2,6 @@
 
 
 Public Class Products
-
     '' The number of buttons visible to the user.
     Private productsVisible As Integer = 0
 
@@ -13,6 +12,8 @@ Public Class Products
     Private CurrentPage As Page
 
     Private Sub Products_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Utility.ProductsInstance = Me
+
         ' Make the products directory if it doesn't exist and then send a message to the console.
         If Not Directory.Exists("Products") Then
             Directory.CreateDirectory("Products")
@@ -41,10 +42,6 @@ Public Class Products
 
         '' Load all of the deals within the program.
         Utility.LoadDeals()
-
-        For Each D As Deal In Utility.GetDeals()
-            Console.WriteLine(D.ExecuteOutput())
-        Next
 
         '' Make an instance of the index and load it.
         LoadPage(New Page("index.page^Index"))
@@ -138,9 +135,11 @@ Public Class Products
         Select Case buttonTagParts(1)
             Case "item"
                 AddItemToBasket(CInt(buttonTagParts(2)))
+                EvaluateDeals()
             Case "page"
                 LoadPage(New Page(buttonTagParts(2)))
         End Select
+
     End Sub
 
     '' Add item to basket and update the price
@@ -170,7 +169,7 @@ Public Class Products
 
     Private Sub EvaluateDeals()
         For Each Item As Deal In Utility.GetDeals()
-
+            Console.WriteLine(Item.ToString())
         Next
     End Sub
 End Class

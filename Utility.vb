@@ -34,18 +34,18 @@ Public Class Utility
         Next
     End Sub
 
-    '' Reads from the Products file, and makes a new Item type.
+    ' Reads from the Products file, and makes a new Item type.
     Public Shared Function LookupProduct(ByVal index As Integer) As Item
         Return New Item(EPOS3.Item.ItemType.Item, Products(index - 1))
     End Function
 
-    '' Returns the deals, mostly used for iteration through them.
+    ' Returns the deals, mostly used for iteration through them.
     Public Shared Function GetDeals() As List(Of Deal)
         Return Deals
     End Function
 
     Public Shared Function ReplaceItemString(ByVal input As String) As String
-        Dim matches As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(input, "item\[([0-9]*)] (amt|test)") ' Look for any of this in regex, works for my conditional
+        Dim matches As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(input, "item\[([0-9]*)] (amt|price)") ' Look for any of this in regex, works for my conditional
 
         For Each match As System.Text.RegularExpressions.Match In matches ' Loop through matches
             Dim id As Integer = CDbl(match.Groups.Item(1).Value) ' The id of the item
@@ -53,6 +53,8 @@ Public Class Utility
 
             If match.Groups.Item(2).Value = "amt" Then
                 input = input.Replace(replaceSection + " amt", FindAmountID(id)) ' Replacing item index with 3 (placeholder until I get a lookup)
+            ElseIf match.Groups.Item(2).Value = "price" Then
+                input = input.Replace(replaceSection + " price", FindPriceID(id))
             End If
         Next
 
@@ -64,10 +66,15 @@ Public Class Utility
         Dim amount = 0
         For Each Item As DataGridViewRow In ProductsInstance.dataBasket.Rows
             Dim cellID = Item.Cells(0).Value
-            amount -= CInt(CInt(cellID) = ID) ' Some cool shorthand
+            amount -= CInt(CInt(cellID) = ID) ' Finds the amount of given item per amount in basket,
+            ' As when rereading this, I could figure out what it meant for 10 minutes, I'll explain, It compares a the cellID with ID which returns a boolean of either true of false,
+            ' when true is casted to an integer it gives the result of -1 in VB, so then if I minus minus 1, then it will give me plus 1, as false is 0, it doesn't affect the total
+            ' at all, so then I can count very easily using a shorthand operator.
         Next
         Return amount
     End Function
 
-    
+    Public Shared Function FindPriceID(ByVal ID As Integer) As Double
+        Return Products(ID - 1).Split("^")(1) ' Looks through all the products, takes away one from the index because arrays start at 0, separate the carets and get the price, which is in the 2nd (or 1st) slot.
+    End Function
 End Class

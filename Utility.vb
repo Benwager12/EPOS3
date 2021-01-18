@@ -56,7 +56,7 @@ Public Class Utility
             End If
         Next
 
-        input = input.Replace("price", ProductsInstance.lblFullPrice.Text)
+        input = input.Replace("price", ProductsInstance.lblSubprice.Text)
         Return input
     End Function
 

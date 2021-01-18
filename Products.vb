@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 
-
 Public Class Products
     '' The number of buttons visible to the user.
     Private productsVisible As Integer = 0
@@ -45,6 +44,10 @@ Public Class Products
 
         '' Make an instance of the index and load it.
         LoadPage(New Page("index.page^Index"))
+
+        For Each d As Deal In Utility.GetDeals()
+            d.EvaluateConditional()
+        Next
     End Sub
 
     Private Sub btnProd_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProd1.TextChanged, btnProd2.TextChanged, btnProd3.TextChanged, btnProd4.TextChanged, btnProd5.TextChanged, btnProd6.TextChanged, btnProd7.TextChanged, btnProd8.TextChanged, btnProd9.TextChanged
@@ -148,7 +151,7 @@ Public Class Products
         Dim name As String = info(If(info.Length > 2, 2, 0))
         dataBasket.Rows.Add(New Object() {index, name, "£" + CStr(String.Format("{0:0.00}", CDbl(info(1))))})
 
-        lblFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text) + CDbl(info(1)))
+        lblSubprice.Text = String.Format("{0:0.00}", CDbl(lblSubprice.Text) + CDbl(info(1)))
     End Sub
 
     Private Sub btnIndex_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIndex.Click
@@ -164,12 +167,24 @@ Public Class Products
         Dim selectedRow = dataBasket.Rows(e.RowIndex)
         'Console.WriteLine("Removed """ + selectedRow.Cells(1).Value + """.")
         dataBasket.Rows.RemoveAt(e.RowIndex)
-        lblFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text) - CDbl(selectedRow.Cells(2).Value.Remove(0, 1)))
+        lblSubprice.Text = String.Format("{0:0.00}", CDbl(lblSubprice.Text) - CDbl(selectedRow.Cells(2).Value.Remove(0, 1)))
     End Sub
 
     Private Sub EvaluateDeals()
         For Each Item As Deal In Utility.GetDeals()
             Console.WriteLine(Item.ToString())
         Next
+    End Sub
+
+    Private Sub lblSubprice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblSubprice.TextChanged
+        If Utility.GetDeals() Is Nothing Then
+            Return
+        End If
+
+        For Each d As Deal In Utility.GetDeals()
+            d.CheckThenEvaluate()
+        Next
+
+        lblFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text))
     End Sub
 End Class

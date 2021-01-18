@@ -55,6 +55,8 @@ Public Class Utility
                 input = input.Replace(replaceSection + " amt", FindAmountID(id)) ' Replacing item index with 3 (placeholder until I get a lookup)
             End If
         Next
+
+        input = input.Replace("price", ProductsInstance.lblFullPrice.Text)
         Return input
     End Function
 
@@ -66,4 +68,6 @@ Public Class Utility
         Next
         Return amount
     End Function
+
+    
 End Class

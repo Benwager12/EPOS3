@@ -38,11 +38,12 @@ Partial Class Products
         Me.txtPageNumber = New System.Windows.Forms.TextBox()
         Me.lblNoProducts = New System.Windows.Forms.Label()
         Me.dataBasket = New System.Windows.Forms.DataGridView()
-        Me.btnIndex = New System.Windows.Forms.Button()
-        Me.lblFullPrice = New System.Windows.Forms.Label()
         Me.index = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.productName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnIndex = New System.Windows.Forms.Button()
+        Me.lblFullPrice = New System.Windows.Forms.Label()
+        Me.lblSubprice = New System.Windows.Forms.Label()
         CType(Me.dataBasket, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -215,25 +216,6 @@ Partial Class Products
         Me.dataBasket.Size = New System.Drawing.Size(213, 225)
         Me.dataBasket.TabIndex = 15
         '
-        'btnIndex
-        '
-        Me.btnIndex.Location = New System.Drawing.Point(630, 243)
-        Me.btnIndex.Name = "btnIndex"
-        Me.btnIndex.Size = New System.Drawing.Size(213, 34)
-        Me.btnIndex.TabIndex = 16
-        Me.btnIndex.Text = "Go to Index"
-        Me.btnIndex.UseVisualStyleBackColor = True
-        '
-        'lblFullPrice
-        '
-        Me.lblFullPrice.AutoSize = True
-        Me.lblFullPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFullPrice.Location = New System.Drawing.Point(378, 297)
-        Me.lblFullPrice.Name = "lblFullPrice"
-        Me.lblFullPrice.Size = New System.Drawing.Size(68, 73)
-        Me.lblFullPrice.TabIndex = 18
-        Me.lblFullPrice.Text = "0"
-        '
         'index
         '
         Me.index.FillWeight = 40.0!
@@ -262,12 +244,43 @@ Partial Class Products
         Me.Price.ReadOnly = True
         Me.Price.Width = 56
         '
+        'btnIndex
+        '
+        Me.btnIndex.Location = New System.Drawing.Point(630, 243)
+        Me.btnIndex.Name = "btnIndex"
+        Me.btnIndex.Size = New System.Drawing.Size(213, 34)
+        Me.btnIndex.TabIndex = 16
+        Me.btnIndex.Text = "Go to Index"
+        Me.btnIndex.UseVisualStyleBackColor = True
+        '
+        'lblFullPrice
+        '
+        Me.lblFullPrice.AutoSize = True
+        Me.lblFullPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFullPrice.Location = New System.Drawing.Point(388, 295)
+        Me.lblFullPrice.Name = "lblFullPrice"
+        Me.lblFullPrice.Size = New System.Drawing.Size(68, 73)
+        Me.lblFullPrice.TabIndex = 18
+        Me.lblFullPrice.Text = "0"
+        '
+        'lblSubprice
+        '
+        Me.lblSubprice.AutoSize = True
+        Me.lblSubprice.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSubprice.Location = New System.Drawing.Point(761, 295)
+        Me.lblSubprice.Name = "lblSubprice"
+        Me.lblSubprice.Size = New System.Drawing.Size(68, 73)
+        Me.lblSubprice.TabIndex = 19
+        Me.lblSubprice.Text = "0"
+        Me.lblSubprice.Visible = False
+        '
         'Products
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(855, 396)
+        Me.Controls.Add(Me.lblSubprice)
         Me.Controls.Add(Me.lblFullPrice)
         Me.Controls.Add(Me.btnIndex)
         Me.Controls.Add(Me.dataBasket)
@@ -316,5 +329,6 @@ Partial Class Products
     Friend WithEvents index As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend Shadows WithEvents productName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Price As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lblSubprice As System.Windows.Forms.Label
 
 End Class

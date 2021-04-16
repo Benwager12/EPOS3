@@ -5,13 +5,34 @@ Public Class Utility
 
     Public Shared ProductsInstance As Products
 
-    '' Products array
+    ' Products array
     Private Shared Products() As String
     Private Shared Deals As List(Of Deal)
 
-    '' Only called on startup, may put a refresh product button. Reads all lines from Products file and puts them into an array.
+    ' Only called on startup, may put a refresh product button. Reads all lines from Products file and puts them into an array.
     Public Shared Sub LoadProducts()
         Products = File.ReadAllLines("Products/products.prod")
+    End Sub
+
+    ' Check if deal conditional is true, if it is, then take it away from the price.
+    Public Shared Sub CheckThenEvaluateDeals()
+        ProductsInstance.lblDealPrice.Text = 0
+        For Each d As Deal In Deals
+            If d.EvaluateConditional Then
+                ProductsInstance.lblDealPrice.Text += d.EvaluateOutput()
+            End If
+        Next
+        ProductsInstance.txtDealPrice.Text = "£" + String.Format("{0:0.00}", Math.Abs(CDbl(ProductsInstance.lblDealPrice.Text)))
+
+        With ProductsInstance.txtDealPrice
+            If ProductsInstance.lblDealPrice.Text < 0 Then
+                .ForeColor = Color.Green
+            ElseIf ProductsInstance.lblDealPrice.Text = 0 Then
+                .ForeColor = Color.Black
+            Else
+                .ForeColor = Color.Red
+            End If
+        End With
     End Sub
 
 

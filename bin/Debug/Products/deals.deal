@@ -1,2 +1,1 @@
-IF item[72] AMT > 2 THEN -5
-IF item[1] AMT > 0 THEN -(item[1] PRICE / 2)
+IF true THEN 0 - (item[1] PRICE * item[1] AMT) / 2

@@ -1,13 +1,13 @@
 ﻿Imports System.IO
 
 Public Class Products
-    '' The number of buttons visible to the user.
+    ' The number of buttons visible to the user.
     Private productsVisible As Integer = 0
 
-    '' Get an instance of the database table named "Login".
+    ' Get an instance of the database table named "Login".
     Private Login As Database = New Database("Login")
 
-    '' An instance of the page so I can make the page change quickly without having to back reference.
+    ' An instance of the page so I can make the page change quickly without having to back reference.
     Private CurrentPage As Page
 
     Private Sub Products_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -19,19 +19,19 @@ Public Class Products
             Console.WriteLine("Created products folder.")
         End If
 
-        '' Make a index page if it doesn't exist and send a message to the console.
+        ' Make a index page if it doesn't exist and send a message to the console.
         If Not File.Exists("Products/index.page") Then
             File.Create("Products/index.page")
             Console.WriteLine("Created index page.")
         End If
 
-        '' Make an empty products file if it doesn't exist and send a message to the console.
+        ' Make an empty products file if it doesn't exist and send a message to the console.
         If Not File.Exists("Products/products.prod") Then
             File.Create("Products/products.prod")
             Console.WriteLine("Created products file.")
         End If
 
-        '' Load all the products out of the products file (important to do after products file is created)
+        ' Load all the products out of the products file (important to do after products file is created)
         Utility.LoadProducts()
 
         If Not File.Exists("Products/deals.deal") Then
@@ -39,10 +39,10 @@ Public Class Products
             Console.WriteLine("Created deals file.")
         End If
 
-        '' Load all of the deals within the program.
+        ' Load all of the deals within the program.
         Utility.LoadDeals()
 
-        '' Make an instance of the index and load it.
+        ' Make an instance of the index and load it.
         LoadPage(New Page("index.page^Index"))
 
         For Each d As Deal In Utility.GetDeals()
@@ -57,15 +57,15 @@ Public Class Products
         lblNoProducts.Visible = (productsVisible = 0)
     End Sub
 
-    '' If a page is specified, then the current page is set and then we move onto main code.
+    ' If a page is specified, then the current page is set and then we move onto main code.
     Private Sub LoadPage(ByVal Page As Page)
         CurrentPage = Page
         LoadPage()
     End Sub
 
-    '' Cycles through each button and uses some math to figure which products are on that page. If there are no products
-    '' in this page at all, it will simply print the line "You have no products on your page." and Return, otherwise, it'll
-    '' set the text of the page number. It will then go on to enabling the first, previous, next and last button.
+    ' Cycles through each button and uses some math to figure which products are on that page. If there are no products
+    ' in this page at all, it will simply print the line "You have no products on your page." and Return, otherwise, it'll
+    ' set the text of the page number. It will then go on to enabling the first, previous, next and last button.
     Private Sub LoadPage()
         For Index As Integer = 1 To 9
             Dim button As Button = CType(Controls("btnProd" + CStr(Index)), Button)
@@ -92,6 +92,12 @@ Public Class Products
             Else
                 button.Tag = button.Tag.ToString.Substring(0, 1) + "^" + item.ToString()
             End If
+
+            button.Font = New Font("Microsoft Sans Serif", 14)
+
+            Dim buttonText As SizeF = CreateGraphics().MeasureString(button.Text, button.Font)
+            Dim newButtonSize As Double = 14 - (buttonText.Width / 325)
+            button.Font = New Font("Microsoft Sans Serif", newButtonSize)
         Next
 
         If CurrentPage.Items.Count = 0 Then
@@ -138,7 +144,6 @@ Public Class Products
         Select Case buttonTagParts(1)
             Case "item"
                 AddItemToBasket(CInt(buttonTagParts(2)))
-                EvaluateDeals()
             Case "page"
                 LoadPage(New Page(buttonTagParts(2)))
         End Select
@@ -170,21 +175,25 @@ Public Class Products
         lblSubprice.Text = String.Format("{0:0.00}", CDbl(lblSubprice.Text) - CDbl(selectedRow.Cells(2).Value.Remove(0, 1)))
     End Sub
 
-    Private Sub EvaluateDeals()
-        For Each Item As Deal In Utility.GetDeals()
-            Console.WriteLine(Item.ToString())
-        Next
-    End Sub
-
     Private Sub lblSubprice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblSubprice.TextChanged
         If Utility.GetDeals() Is Nothing Then
             Return
         End If
 
-        For Each d As Deal In Utility.GetDeals()
-            d.CheckThenEvaluate()
-        Next
+        Utility.CheckThenEvaluateDeals()
 
-        lblFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text))
+        txtSubprice.Text = "£" + lblSubprice.Text
+        lblFullPrice.Text = CStr(CDbl(lblSubprice.Text) + CDbl(lblDealPrice.Text))
+        txtFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text))
+    End Sub
+
+    Private Sub lblDealPrice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDealPrice.TextChanged
+        lblFullPrice.Text = CStr(CDbl(lblSubprice.Text) + CDbl(lblDealPrice.Text))
+        txtFullPrice.Text = "£" + String.Format("{0:0.00}", lblFullPrice.Text)
+    End Sub
+
+    Private Sub btnClearBasket_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClearBasket.Click
+        dataBasket.Rows.Clear()
+        lblSubprice.Text = "0.00"
     End Sub
 End Class

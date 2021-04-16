@@ -78,10 +78,10 @@
   <ItemGroup>
     <Compile Include="Database.vb" />
     <Compile Include="Deal.vb" />
+    <Compile Include="ExpressionToOutput.vb" />
     <Compile Include="Item.vb" />
     <Compile Include="Page.vb" />
-    <Compile Include="Parser\Parser.vb" />
-    <Compile Include="Parser\ParserUtility.vb" />
+    <Compile Include="ParserUtility.vb" />
     <Compile Include="Products.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +104,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Token.vb" />
+    <Compile Include="TokenList.vb" />
+    <Compile Include="TokenState.vb" />
     <Compile Include="Utility.vb" />
   </ItemGroup>
   <ItemGroup>

@@ -9,10 +9,31 @@ Public Class Utility
     Private Shared Products() As String
     Private Shared Deals As List(Of Deal)
 
+    ' Get an instance of the database table named "Users".
+    Private Shared Users As Database
+    ' Get an instance of the database table named "UserTypes"
+    Private Shared UserTypes As Database
+
     ' Only called on startup, may put a refresh product button. Reads all lines from Products file and puts them into an array.
     Public Shared Sub LoadProducts()
         Products = File.ReadAllLines("Products/products.prod")
     End Sub
+
+    ' Initialize the databases
+    Public Shared Sub LoadDatabases()
+        Users = New Database("Users")
+        UserTypes = New Database("UserTypes")
+    End Sub
+
+    ' Get a copy of "User" table.
+    Public Shared Function GetUserTbl() As Database
+        Return Users
+    End Function
+
+    ' Get a copy of "UserTypes" table.
+    Public Shared Function GetUserTypesTbl() As Database
+        Return UserTypes
+    End Function
 
     ' Check if deal conditional is true, if it is, then take it away from the price.
     Public Shared Sub CheckThenEvaluateDeals()

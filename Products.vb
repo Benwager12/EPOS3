@@ -4,8 +4,7 @@ Public Class Products
     ' The number of buttons visible to the user.
     Private productsVisible As Integer = 0
 
-    ' Get an instance of the database table named "Login".
-    Private Login As Database = New Database("Login")
+    
 
     ' An instance of the page so I can make the page change quickly without having to back reference.
     Private CurrentPage As Page
@@ -184,7 +183,7 @@ Public Class Products
 
         txtSubprice.Text = "£" + lblSubprice.Text
         lblFullPrice.Text = CStr(CDbl(lblSubprice.Text) + CDbl(lblDealPrice.Text))
-        txtFullPrice.Text = String.Format("{0:0.00}", CDbl(lblFullPrice.Text))
+        txtFullPrice.Text = String.Format("£{0:0.00}", CDbl(lblFullPrice.Text))
     End Sub
 
     Private Sub lblDealPrice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDealPrice.TextChanged
@@ -195,5 +194,9 @@ Public Class Products
     Private Sub btnClearBasket_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClearBasket.Click
         dataBasket.Rows.Clear()
         lblSubprice.Text = "0.00"
+    End Sub
+
+    Private Sub txtFullPrice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFullPrice.TextChanged
+
     End Sub
 End Class

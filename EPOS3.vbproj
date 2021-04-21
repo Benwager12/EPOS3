@@ -80,6 +80,12 @@
     <Compile Include="Deal.vb" />
     <Compile Include="ExpressionToOutput.vb" />
     <Compile Include="Item.vb" />
+    <Compile Include="ManageUsers.Designer.vb">
+      <DependentUpon>ManageUsers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManageUsers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Page.vb" />
     <Compile Include="ParserUtility.vb" />
     <Compile Include="Products.vb">
@@ -104,12 +110,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SignIn.Designer.vb">
+      <DependentUpon>SignIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SignIn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Token.vb" />
     <Compile Include="TokenList.vb" />
     <Compile Include="TokenState.vb" />
     <Compile Include="Utility.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ManageUsers.resx">
+      <DependentUpon>ManageUsers.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Products.resx">
       <DependentUpon>Products.vb</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +133,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignIn.resx">
+      <DependentUpon>SignIn.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -53,13 +53,15 @@ Partial Class Products
         Me.lblDealText = New System.Windows.Forms.Label()
         Me.lblFullPriceText = New System.Windows.Forms.Label()
         Me.txtFullPrice = New System.Windows.Forms.TextBox()
+        Me.btnSignIn = New System.Windows.Forms.Button()
+        Me.btnSubmit = New System.Windows.Forms.Button()
         CType(Me.dataBasket, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnProd1
         '
         Me.btnProd1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd1.Location = New System.Drawing.Point(12, 12)
+        Me.btnProd1.Location = New System.Drawing.Point(12, 51)
         Me.btnProd1.Name = "btnProd1"
         Me.btnProd1.Size = New System.Drawing.Size(200, 71)
         Me.btnProd1.TabIndex = 0
@@ -70,7 +72,7 @@ Partial Class Products
         'btnProd2
         '
         Me.btnProd2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd2.Location = New System.Drawing.Point(218, 12)
+        Me.btnProd2.Location = New System.Drawing.Point(218, 51)
         Me.btnProd2.Name = "btnProd2"
         Me.btnProd2.Size = New System.Drawing.Size(200, 71)
         Me.btnProd2.TabIndex = 1
@@ -81,7 +83,7 @@ Partial Class Products
         'btnProd3
         '
         Me.btnProd3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd3.Location = New System.Drawing.Point(424, 12)
+        Me.btnProd3.Location = New System.Drawing.Point(424, 51)
         Me.btnProd3.Name = "btnProd3"
         Me.btnProd3.Size = New System.Drawing.Size(200, 71)
         Me.btnProd3.TabIndex = 2
@@ -92,7 +94,7 @@ Partial Class Products
         'btnProd6
         '
         Me.btnProd6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd6.Location = New System.Drawing.Point(424, 89)
+        Me.btnProd6.Location = New System.Drawing.Point(424, 128)
         Me.btnProd6.Name = "btnProd6"
         Me.btnProd6.Size = New System.Drawing.Size(200, 71)
         Me.btnProd6.TabIndex = 5
@@ -103,7 +105,7 @@ Partial Class Products
         'btnProd5
         '
         Me.btnProd5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd5.Location = New System.Drawing.Point(218, 89)
+        Me.btnProd5.Location = New System.Drawing.Point(218, 128)
         Me.btnProd5.Name = "btnProd5"
         Me.btnProd5.Size = New System.Drawing.Size(200, 71)
         Me.btnProd5.TabIndex = 4
@@ -114,7 +116,7 @@ Partial Class Products
         'btnProd4
         '
         Me.btnProd4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd4.Location = New System.Drawing.Point(12, 89)
+        Me.btnProd4.Location = New System.Drawing.Point(12, 128)
         Me.btnProd4.Name = "btnProd4"
         Me.btnProd4.Size = New System.Drawing.Size(200, 71)
         Me.btnProd4.TabIndex = 3
@@ -126,7 +128,7 @@ Partial Class Products
         '
         Me.btnProd9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.btnProd9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd9.Location = New System.Drawing.Point(424, 166)
+        Me.btnProd9.Location = New System.Drawing.Point(424, 205)
         Me.btnProd9.Name = "btnProd9"
         Me.btnProd9.Size = New System.Drawing.Size(200, 71)
         Me.btnProd9.TabIndex = 8
@@ -137,7 +139,7 @@ Partial Class Products
         'btnProd8
         '
         Me.btnProd8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd8.Location = New System.Drawing.Point(218, 166)
+        Me.btnProd8.Location = New System.Drawing.Point(218, 205)
         Me.btnProd8.Name = "btnProd8"
         Me.btnProd8.Size = New System.Drawing.Size(200, 71)
         Me.btnProd8.TabIndex = 7
@@ -148,7 +150,7 @@ Partial Class Products
         'btnProd7
         '
         Me.btnProd7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnProd7.Location = New System.Drawing.Point(12, 166)
+        Me.btnProd7.Location = New System.Drawing.Point(12, 205)
         Me.btnProd7.Name = "btnProd7"
         Me.btnProd7.Size = New System.Drawing.Size(200, 71)
         Me.btnProd7.TabIndex = 6
@@ -158,7 +160,7 @@ Partial Class Products
         '
         'btnFirst
         '
-        Me.btnFirst.Location = New System.Drawing.Point(12, 243)
+        Me.btnFirst.Location = New System.Drawing.Point(12, 282)
         Me.btnFirst.Name = "btnFirst"
         Me.btnFirst.Size = New System.Drawing.Size(138, 34)
         Me.btnFirst.TabIndex = 9
@@ -167,7 +169,7 @@ Partial Class Products
         '
         'btnLast
         '
-        Me.btnLast.Location = New System.Drawing.Point(486, 243)
+        Me.btnLast.Location = New System.Drawing.Point(486, 282)
         Me.btnLast.Name = "btnLast"
         Me.btnLast.Size = New System.Drawing.Size(138, 34)
         Me.btnLast.TabIndex = 10
@@ -176,7 +178,7 @@ Partial Class Products
         '
         'btnPrev
         '
-        Me.btnPrev.Location = New System.Drawing.Point(156, 243)
+        Me.btnPrev.Location = New System.Drawing.Point(156, 282)
         Me.btnPrev.Name = "btnPrev"
         Me.btnPrev.Size = New System.Drawing.Size(121, 34)
         Me.btnPrev.TabIndex = 11
@@ -185,7 +187,7 @@ Partial Class Products
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(358, 243)
+        Me.btnNext.Location = New System.Drawing.Point(358, 282)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(122, 34)
         Me.btnNext.TabIndex = 12
@@ -195,7 +197,7 @@ Partial Class Products
         'txtPageNumber
         '
         Me.txtPageNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPageNumber.Location = New System.Drawing.Point(283, 243)
+        Me.txtPageNumber.Location = New System.Drawing.Point(283, 282)
         Me.txtPageNumber.MaxLength = 20
         Me.txtPageNumber.Name = "txtPageNumber"
         Me.txtPageNumber.ReadOnly = True
@@ -207,7 +209,7 @@ Partial Class Products
         '
         Me.lblNoProducts.AutoSize = True
         Me.lblNoProducts.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNoProducts.Location = New System.Drawing.Point(192, 110)
+        Me.lblNoProducts.Location = New System.Drawing.Point(192, 149)
         Me.lblNoProducts.Name = "lblNoProducts"
         Me.lblNoProducts.Size = New System.Drawing.Size(254, 24)
         Me.lblNoProducts.TabIndex = 14
@@ -227,7 +229,7 @@ Partial Class Products
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dataBasket.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dataBasket.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.index, Me.productName, Me.Price})
-        Me.dataBasket.Location = New System.Drawing.Point(630, 12)
+        Me.dataBasket.Location = New System.Drawing.Point(630, 51)
         Me.dataBasket.Name = "dataBasket"
         Me.dataBasket.ReadOnly = True
         Me.dataBasket.RowHeadersVisible = False
@@ -265,7 +267,7 @@ Partial Class Products
         '
         'btnIndex
         '
-        Me.btnIndex.Location = New System.Drawing.Point(630, 243)
+        Me.btnIndex.Location = New System.Drawing.Point(630, 282)
         Me.btnIndex.Name = "btnIndex"
         Me.btnIndex.Size = New System.Drawing.Size(109, 34)
         Me.btnIndex.TabIndex = 16
@@ -307,7 +309,7 @@ Partial Class Products
         '
         'btnClearBasket
         '
-        Me.btnClearBasket.Location = New System.Drawing.Point(745, 244)
+        Me.btnClearBasket.Location = New System.Drawing.Point(745, 283)
         Me.btnClearBasket.Name = "btnClearBasket"
         Me.btnClearBasket.Size = New System.Drawing.Size(98, 34)
         Me.btnClearBasket.TabIndex = 21
@@ -318,7 +320,7 @@ Partial Class Products
         '
         Me.lblSubpriceText.AutoSize = True
         Me.lblSubpriceText.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSubpriceText.Location = New System.Drawing.Point(12, 289)
+        Me.lblSubpriceText.Location = New System.Drawing.Point(12, 328)
         Me.lblSubpriceText.Name = "lblSubpriceText"
         Me.lblSubpriceText.Size = New System.Drawing.Size(91, 24)
         Me.lblSubpriceText.TabIndex = 22
@@ -330,7 +332,7 @@ Partial Class Products
         Me.txtSubprice.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSubprice.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSubprice.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.txtSubprice.Location = New System.Drawing.Point(109, 289)
+        Me.txtSubprice.Location = New System.Drawing.Point(109, 328)
         Me.txtSubprice.MaxLength = 8
         Me.txtSubprice.Name = "txtSubprice"
         Me.txtSubprice.ReadOnly = True
@@ -345,7 +347,7 @@ Partial Class Products
         Me.txtDealPrice.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtDealPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDealPrice.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.txtDealPrice.Location = New System.Drawing.Point(425, 289)
+        Me.txtDealPrice.Location = New System.Drawing.Point(425, 328)
         Me.txtDealPrice.MaxLength = 8
         Me.txtDealPrice.Name = "txtDealPrice"
         Me.txtDealPrice.ReadOnly = True
@@ -358,7 +360,7 @@ Partial Class Products
         '
         Me.lblDealText.AutoSize = True
         Me.lblDealText.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDealText.Location = New System.Drawing.Point(369, 289)
+        Me.lblDealText.Location = New System.Drawing.Point(369, 328)
         Me.lblDealText.Name = "lblDealText"
         Me.lblDealText.Size = New System.Drawing.Size(53, 24)
         Me.lblDealText.TabIndex = 24
@@ -368,7 +370,7 @@ Partial Class Products
         '
         Me.lblFullPriceText.AutoSize = True
         Me.lblFullPriceText.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFullPriceText.Location = New System.Drawing.Point(26, 323)
+        Me.lblFullPriceText.Location = New System.Drawing.Point(26, 362)
         Me.lblFullPriceText.Name = "lblFullPriceText"
         Me.lblFullPriceText.Size = New System.Drawing.Size(56, 24)
         Me.lblFullPriceText.TabIndex = 26
@@ -380,7 +382,7 @@ Partial Class Products
         Me.txtFullPrice.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtFullPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFullPrice.ForeColor = System.Drawing.SystemColors.InfoText
-        Me.txtFullPrice.Location = New System.Drawing.Point(109, 325)
+        Me.txtFullPrice.Location = New System.Drawing.Point(109, 364)
         Me.txtFullPrice.MaxLength = 8
         Me.txtFullPrice.Name = "txtFullPrice"
         Me.txtFullPrice.ReadOnly = True
@@ -389,12 +391,32 @@ Partial Class Products
         Me.txtFullPrice.Text = "£0.00"
         Me.txtFullPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'btnSignIn
+        '
+        Me.btnSignIn.Location = New System.Drawing.Point(12, 12)
+        Me.btnSignIn.Name = "btnSignIn"
+        Me.btnSignIn.Size = New System.Drawing.Size(831, 34)
+        Me.btnSignIn.TabIndex = 28
+        Me.btnSignIn.Text = "Back to Sign In"
+        Me.btnSignIn.UseVisualStyleBackColor = True
+        '
+        'btnSubmit
+        '
+        Me.btnSubmit.Location = New System.Drawing.Point(630, 325)
+        Me.btnSubmit.Name = "btnSubmit"
+        Me.btnSubmit.Size = New System.Drawing.Size(213, 80)
+        Me.btnSubmit.TabIndex = 29
+        Me.btnSubmit.Text = "Submit"
+        Me.btnSubmit.UseVisualStyleBackColor = True
+        '
         'Products
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(855, 355)
+        Me.ClientSize = New System.Drawing.Size(855, 417)
+        Me.Controls.Add(Me.btnSubmit)
+        Me.Controls.Add(Me.btnSignIn)
         Me.Controls.Add(Me.txtFullPrice)
         Me.Controls.Add(Me.lblFullPriceText)
         Me.Controls.Add(Me.txtDealPrice)
@@ -461,5 +483,7 @@ Partial Class Products
     Friend WithEvents lblDealText As System.Windows.Forms.Label
     Friend WithEvents lblFullPriceText As System.Windows.Forms.Label
     Friend WithEvents txtFullPrice As System.Windows.Forms.TextBox
+    Friend WithEvents btnSignIn As System.Windows.Forms.Button
+    Friend WithEvents btnSubmit As System.Windows.Forms.Button
 
 End Class

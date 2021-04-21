@@ -1,0 +1,10 @@
+﻿Public Enum TokenState
+    MATHEMATICAL_OPERATOR
+    NUMERIC
+    BRACKET_START
+    BRACKET_END
+    WITHIN_BRACKET
+    UNKNOWN_STATE
+    BOOL
+    ANDOR
+End Enum

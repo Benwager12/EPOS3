@@ -4,50 +4,8 @@ Public Class Products
     ' The number of buttons visible to the user.
     Private productsVisible As Integer = 0
 
-    
-
     ' An instance of the page so I can make the page change quickly without having to back reference.
     Private CurrentPage As Page
-
-    Private Sub Products_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Utility.ProductsInstance = Me
-
-        ' Make the products directory if it doesn't exist and then send a message to the console.
-        If Not Directory.Exists("Products") Then
-            Directory.CreateDirectory("Products")
-            Console.WriteLine("Created products folder.")
-        End If
-
-        ' Make a index page if it doesn't exist and send a message to the console.
-        If Not File.Exists("Products/index.page") Then
-            File.Create("Products/index.page")
-            Console.WriteLine("Created index page.")
-        End If
-
-        ' Make an empty products file if it doesn't exist and send a message to the console.
-        If Not File.Exists("Products/products.prod") Then
-            File.Create("Products/products.prod")
-            Console.WriteLine("Created products file.")
-        End If
-
-        ' Load all the products out of the products file (important to do after products file is created)
-        Utility.LoadProducts()
-
-        If Not File.Exists("Products/deals.deal") Then
-            File.Create("Products/deals.deal")
-            Console.WriteLine("Created deals file.")
-        End If
-
-        ' Load all of the deals within the program.
-        Utility.LoadDeals()
-
-        ' Make an instance of the index and load it.
-        LoadPage(New Page("index.page^Index"))
-
-        For Each d As Deal In Utility.GetDeals()
-            d.EvaluateConditional()
-        Next
-    End Sub
 
     Private Sub btnProd_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProd1.TextChanged, btnProd2.TextChanged, btnProd3.TextChanged, btnProd4.TextChanged, btnProd5.TextChanged, btnProd6.TextChanged, btnProd7.TextChanged, btnProd8.TextChanged, btnProd9.TextChanged
         Dim button As Button = CType(sender, Button)
@@ -196,7 +154,10 @@ Public Class Products
         lblSubprice.Text = "0.00"
     End Sub
 
-    Private Sub txtFullPrice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFullPrice.TextChanged
+    Private Sub Products_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ' Make an instance of the index and load it.
+        LoadPage(New Page("index.page^Index"))
 
+        Utility.ProductsInstance = Me
     End Sub
 End Class

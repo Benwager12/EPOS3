@@ -26,7 +26,7 @@
 
     ' Using a new data adapter with an SQL string to open a connection and fill a quick dataset and using the
     ' data adapter to fill a temporary table, and then the data table into the table in full view.
-    Function getSQL(ByVal sql As String)
+    Function getSQL(ByVal sql As String) As DataTable
         connection.Open()
         dataadapter = New OleDb.OleDbDataAdapter(sql, connection)
         connection.Close()

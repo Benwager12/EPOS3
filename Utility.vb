@@ -100,7 +100,12 @@ Public Class Utility
             End If
         Next
 
-        input = input.Replace("price", ProductsInstance.lblSubprice.Text)
+        Try
+            input = input.Replace("price", ProductsInstance.lblSubprice.Text)
+        Catch ex As Exception
+            Console.WriteLine("Deal applied on startup")
+        End Try
+
         Return input
     End Function
 

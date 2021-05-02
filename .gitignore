@@ -1,2 +1,5 @@
 *.suo
 bin/Release/
+bin/Debug/*.exe
+bin/Debug/*.pdb
+bin/Debug/*.xml

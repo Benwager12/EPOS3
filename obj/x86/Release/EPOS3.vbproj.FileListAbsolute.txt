@@ -1,0 +1,9 @@
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\bin\Release\EPOS3.exe
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\bin\Release\EPOS3.pdb
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\bin\Release\EPOS3.xml
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Release\EPOS3.Products.resources
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Release\EPOS3.Resources.resources
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Release\EPOS3.vbproj.GenerateResource.Cache
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Release\EPOS3.exe
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Release\EPOS3.xml
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Release\EPOS3.pdb

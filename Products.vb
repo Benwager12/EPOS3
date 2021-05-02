@@ -133,13 +133,23 @@ Public Class Products
     End Sub
 
     Private Sub lblSubprice_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblSubprice.TextChanged
+        If Utility.ProductsInstance Is Nothing Then
+            Utility.ProductsInstance = Me
+        End If
+
         If Utility.GetDeals() Is Nothing Then
             Return
         End If
 
-        Utility.CheckThenEvaluateDeals()
+        If Not Utility.ProductsInstance Is Nothing Then
+            Utility.CheckThenEvaluateDeals()
+        End If
 
         txtSubprice.Text = "£" + lblSubprice.Text
+        If lblDealPrice.Text = "" Then
+            lblDealPrice.Text = "0"
+        End If
+
         lblFullPrice.Text = CStr(CDbl(lblSubprice.Text) + CDbl(lblDealPrice.Text))
         txtFullPrice.Text = String.Format("£{0:0.00}", CDbl(lblFullPrice.Text))
     End Sub
@@ -156,8 +166,24 @@ Public Class Products
 
     Private Sub Products_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Make an instance of the index and load it.
-        LoadPage(New Page("index.page^Index"))
-
         Utility.ProductsInstance = Me
+
+        LoadPage(New Page("index.page^Index"))
+    End Sub
+
+    Private Sub btnSignIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSignIn.Click
+        GotoSignIn()
+    End Sub
+
+    Public Sub GotoSignIn()
+        btnClearBasket.PerformClick()
+        btnIndex.PerformClick()
+
+        Hide()
+        SignIn.Show()
+    End Sub
+
+    Private Sub Products_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        GotoSignIn()
     End Sub
 End Class

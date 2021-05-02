@@ -41,19 +41,51 @@ Public Class SignIn
     End Sub
 
     Private Sub btnSignIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSignIn.Click
-        ' Hide window
+        ' Check user credentials
         Dim usrs As Database = Utility.GetUserTbl()
-        Dim user As DataTable = usrs.getSQL("SELECT * FROM Users WHERE Username='" + txtUsername.Text + "' AND Password='" + txtPassword.Text + "';")
+        Dim getUserSql As String = "SELECT Users.Username, Users.Password, Users.UserType FROM Users WHERE (((Users.Username)=""" + txtUsername.Text + """) AND ((Users.Password)=""" + txtPassword.Text + """));"
+        Dim user As DataTable = usrs.getSQL(getUserSql)
+
         If user.Rows.Count = 0 Then
             MsgBox("No user")
+            Return
         End If
 
-        Console.WriteLine(user.Columns(2))
-        a = user.Columns(2)
-        Console.WriteLine()
+        txtUsername.Text = ""
+        txtPassword.Text = ""
+
         ' Check user type
+        Dim userType As Integer = user.Rows(0).Item(2)
+        If userType < 1 Or userType > 3 Then
+            MsgBox("Invalid user type")
+            Return
+        End If
+
+        Hide()
+
         ' If normal user open Products,
+        If userType = 3 Then
+            If Utility.ProductsInstance Is Nothing Then
+                Utility.ProductsInstance = Products
+            End If
+            Products.Show()
+            Return
+        End If
+
         ' If not, open manage users,
+        If userType = 2 Then
+            ManageUsers.Show()
+            Return
+        End If
+
         ' If it's a superuser, then open manage users with a boolean property
+        If userType = 1 Then
+            ManageUsers.isSuperuser = True
+            ManageUsers.Show()
+            Return
+        End If
+
+        ' ???
+        MsgBox("If you got here, congrats, you broke the program")
     End Sub
 End Class

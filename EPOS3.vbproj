@@ -86,6 +86,12 @@
     <Compile Include="ManageUsers.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="NewUser.Designer.vb">
+      <DependentUpon>NewUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NewUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Page.vb" />
     <Compile Include="ParserUtility.vb" />
     <Compile Include="Products.vb">
@@ -124,6 +130,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ManageUsers.resx">
       <DependentUpon>ManageUsers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUser.resx">
+      <DependentUpon>NewUser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products.resx">
       <DependentUpon>Products.vb</DependentUpon>

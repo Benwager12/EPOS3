@@ -98,6 +98,8 @@ Partial Class SignIn
         Me.Controls.Add(Me.lblPassword)
         Me.Controls.Add(Me.lblUsername)
         Me.Controls.Add(Me.lblSignIn)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "SignIn"
         Me.Text = "SignIn"
         Me.ResumeLayout(False)

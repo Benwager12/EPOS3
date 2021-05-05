@@ -22,17 +22,18 @@ Partial Class ManageUsers
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.la = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dataUsers = New System.Windows.Forms.DataGridView()
+        Me.btnSignIn = New System.Windows.Forms.Button()
+        Me.btnAddUser = New System.Windows.Forms.Button()
         Me.columnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnUsername = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnUsertype = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.columnPoints = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnSignIn = New System.Windows.Forms.Button()
+        Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.btnRemove = New System.Windows.Forms.Button()
         CType(Me.dataUsers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -46,28 +47,10 @@ Partial Class ManageUsers
         Me.la.TabIndex = 1
         Me.la.Text = "Manage Users"
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(225, 355)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(67, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "display users"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(81, 343)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(48, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "add user"
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(379, 325)
+        Me.Label3.Location = New System.Drawing.Point(383, 359)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(65, 13)
         Me.Label3.TabIndex = 4
@@ -80,22 +63,41 @@ Partial Class ManageUsers
         Me.dataUsers.AllowUserToResizeColumns = False
         Me.dataUsers.AllowUserToResizeRows = False
         Me.dataUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dataUsers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dataUsers.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dataUsers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnID, Me.columnUsername, Me.columnUsertype, Me.columnPoints})
         Me.dataUsers.Location = New System.Drawing.Point(26, 82)
         Me.dataUsers.Name = "dataUsers"
         Me.dataUsers.ReadOnly = True
         Me.dataUsers.RowHeadersVisible = False
+        Me.dataUsers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.dataUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dataUsers.Size = New System.Drawing.Size(507, 225)
         Me.dataUsers.TabIndex = 16
+        '
+        'btnSignIn
+        '
+        Me.btnSignIn.Location = New System.Drawing.Point(26, 12)
+        Me.btnSignIn.Name = "btnSignIn"
+        Me.btnSignIn.Size = New System.Drawing.Size(103, 41)
+        Me.btnSignIn.TabIndex = 17
+        Me.btnSignIn.Text = "Back to Sign In"
+        Me.btnSignIn.UseVisualStyleBackColor = True
+        '
+        'btnAddUser
+        '
+        Me.btnAddUser.Location = New System.Drawing.Point(26, 313)
+        Me.btnAddUser.Name = "btnAddUser"
+        Me.btnAddUser.Size = New System.Drawing.Size(163, 32)
+        Me.btnAddUser.TabIndex = 18
+        Me.btnAddUser.Text = "Add User"
+        Me.btnAddUser.UseVisualStyleBackColor = True
         '
         'columnID
         '
@@ -120,9 +122,10 @@ Partial Class ManageUsers
         '
         'columnUsertype
         '
+        Me.columnUsertype.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox
         Me.columnUsertype.Frozen = True
         Me.columnUsertype.HeaderText = "User Type"
-        Me.columnUsertype.Items.AddRange(New Object() {"1", "2", "3"})
+        Me.columnUsertype.Items.AddRange(New Object() {"Superuser", "Admin", "User"})
         Me.columnUsertype.Name = "columnUsertype"
         Me.columnUsertype.ReadOnly = True
         Me.columnUsertype.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -130,33 +133,45 @@ Partial Class ManageUsers
         'columnPoints
         '
         Me.columnPoints.Frozen = True
-        Me.columnPoints.HeaderText = "Points"
+        Me.columnPoints.HeaderText = "Password"
         Me.columnPoints.MinimumWidth = 110
         Me.columnPoints.Name = "columnPoints"
         Me.columnPoints.ReadOnly = True
         Me.columnPoints.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.columnPoints.Width = 110
         '
-        'btnSignIn
+        'btnUpdate
         '
-        Me.btnSignIn.Location = New System.Drawing.Point(26, 12)
-        Me.btnSignIn.Name = "btnSignIn"
-        Me.btnSignIn.Size = New System.Drawing.Size(103, 41)
-        Me.btnSignIn.TabIndex = 17
-        Me.btnSignIn.Text = "Back to Sign In"
-        Me.btnSignIn.UseVisualStyleBackColor = True
+        Me.btnUpdate.Location = New System.Drawing.Point(195, 313)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(169, 32)
+        Me.btnUpdate.TabIndex = 19
+        Me.btnUpdate.Text = "Update Users"
+        Me.btnUpdate.UseVisualStyleBackColor = True
+        '
+        'btnRemove
+        '
+        Me.btnRemove.Location = New System.Drawing.Point(370, 313)
+        Me.btnRemove.Name = "btnRemove"
+        Me.btnRemove.Size = New System.Drawing.Size(163, 32)
+        Me.btnRemove.TabIndex = 20
+        Me.btnRemove.Text = "Remove Selected"
+        Me.btnRemove.UseVisualStyleBackColor = True
         '
         'ManageUsers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(562, 418)
+        Me.Controls.Add(Me.btnRemove)
+        Me.Controls.Add(Me.btnUpdate)
+        Me.Controls.Add(Me.btnAddUser)
         Me.Controls.Add(Me.btnSignIn)
         Me.Controls.Add(Me.dataUsers)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.la)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "ManageUsers"
         Me.Text = "ManageUsers"
         CType(Me.dataUsers, System.ComponentModel.ISupportInitialize).EndInit()
@@ -165,13 +180,14 @@ Partial Class ManageUsers
 
     End Sub
     Friend WithEvents la As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents dataUsers As System.Windows.Forms.DataGridView
+    Friend WithEvents btnSignIn As System.Windows.Forms.Button
+    Friend WithEvents btnAddUser As System.Windows.Forms.Button
     Friend WithEvents columnID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnUsername As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnUsertype As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents columnPoints As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btnSignIn As System.Windows.Forms.Button
+    Friend WithEvents btnUpdate As System.Windows.Forms.Button
+    Friend WithEvents btnRemove As System.Windows.Forms.Button
 End Class

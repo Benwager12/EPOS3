@@ -9,3 +9,4 @@ c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPO
 c:\users\ben\documents\visual studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.pdb
 C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.ManageUsers.resources
 C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.SignIn.resources
+C:\Users\Ben\Documents\Visual Studio 2010\Projects\EPOS3\EPOS3\obj\x86\Debug\EPOS3.NewUser.resources

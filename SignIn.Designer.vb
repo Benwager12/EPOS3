@@ -101,7 +101,8 @@ Partial Class SignIn
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "SignIn"
-        Me.Text = "SignIn"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Sign In"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -78,6 +78,12 @@
   <ItemGroup>
     <Compile Include="Database.vb" />
     <Compile Include="Deal.vb" />
+    <Compile Include="ShowAmount.Designer.vb">
+      <DependentUpon>ShowAmount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ShowAmount.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ExpressionToOutput.vb" />
     <Compile Include="Item.vb" />
     <Compile Include="ManageUsers.Designer.vb">
@@ -128,6 +134,9 @@
     <Compile Include="Utility.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ShowAmount.resx">
+      <DependentUpon>ShowAmount.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManageUsers.resx">
       <DependentUpon>ManageUsers.vb</DependentUpon>
     </EmbeddedResource>

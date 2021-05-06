@@ -30,14 +30,27 @@ Public Class SignIn
         End If
 
         ' Load all of the deals within the program.
-        Utility.LoadDeals()
+        Try
+            Utility.LoadDeals()
 
-        For Each d As Deal In Utility.GetDeals()
-            d.EvaluateConditional()
-        Next
+            For Each d As Deal In Utility.GetDeals()
+                d.EvaluateConditional()
+            Next
+        Catch ex As Exception
+            MsgBox("Error occured when loading the deals.", MsgBoxStyle.OkOnly, "Error!")
+            Application.Exit()
+        End Try
 
-        ' Load the databases
-        Utility.LoadDatabases()
+
+        
+        Try
+            ' Load the databases
+            Utility.LoadDatabases()
+        Catch ex As Exception
+            MsgBox("Error occured when loading the database tables.", MsgBoxStyle.OkOnly, "Error!")
+            Application.Exit()
+        End Try
+        
     End Sub
 
     Private Sub btnSignIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSignIn.Click

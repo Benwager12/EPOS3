@@ -186,4 +186,12 @@ Public Class Products
     Private Sub Products_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         GotoSignIn()
     End Sub
+
+    Private Sub btnSubmit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSubmit.Click
+        Console.WriteLine(lblFullPrice.Text)
+        Dim amtPage As ShowAmount = New ShowAmount(CDbl(lblFullPrice.Text))
+        amtPage.ShowDialog()
+        btnClearBasket.PerformClick()
+        btnIndex.PerformClick()
+    End Sub
 End Class

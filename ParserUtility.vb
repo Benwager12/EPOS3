@@ -1,13 +1,13 @@
 ﻿Public Class ParserUtility
+    ' All the operators
     Public Shared operators As String() = {"min", "max", "**", "/", "mod", "*", "+", "-", ">", ">=", "<", "<=", "=", "!=", "and", "or"}
 
+    ' Checks if given string is in operator list
     Public Shared Function isOperator(ByVal word As String) As Boolean
-        If operators.Contains(word) Then
-            Return True
-        End If
-        Return False
+        Return operators.Contains(word)
     End Function
 
+    ' Count the amount of a given character in a string
     Public Shared Function countCharacters(ByVal input As String, ByVal charmatch As Char) As Integer
         Dim result As Integer = 0
         For Each c As Char In input
@@ -18,6 +18,7 @@
         Return result
     End Function
 
+    ' Get all the brackets in a list of strings
     Public Shared Function GetBrackets(ByVal tokens As TokenList) As List(Of String)
         Dim bracketStrings As List(Of String) = New List(Of String)
 
@@ -34,10 +35,12 @@
         Return bracketStrings
     End Function
 
+    ' Split by a word rather than splitting by a singular character
     Public Shared Function splitByWord(ByVal input As String, ByVal splitter As String) As String()
         Return System.Text.RegularExpressions.Regex.Split(input, splitter)
     End Function
 
+    ' Get the result for different operations
     Public Shared Function ReturnResult(ByVal numeric1 As Double, ByVal numeric2 As Double, ByVal op As String) As String
         Select Case op
             Case "min"
@@ -76,6 +79,7 @@
         Return "0"
     End Function
 
+    ' Find the indexes of a particular char
     Public Shared Function AllIndexesOf(ByVal look As String, ByVal find As Char) As List(Of Integer)
         Dim result = New List(Of Integer)
         Dim index = 0
@@ -88,6 +92,7 @@
         Return result
     End Function
 
+    ' Find all times where a word occurs and give the index
     Public Shared Function AllWordIndexesOf(ByVal look As String, ByVal word As String) As List(Of Integer)
         Dim result = New List(Of Integer)
         Dim index = 0
@@ -101,6 +106,7 @@
         Return result
     End Function
 
+    ' Find the changes that need to be done to a string.
     Public Shared Function FindChanges(ByVal input As String) As List(Of ExpressionToOutput)
         Dim changes = New List(Of ExpressionToOutput)()
         Dim list = New TokenList(input)
@@ -138,6 +144,7 @@
         Return changes
     End Function
 
+    ' From a token, find out which type of token it is
     Public Shared Function GetStringTokenType(ByVal input As String) As TokenState
         If IsNumeric(input) Then
             Return TokenState.NUMERIC

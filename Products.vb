@@ -117,7 +117,8 @@ Public Class Products
     End Sub
 
     Private Sub btnIndex_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnIndex.Click
-        LoadPage(New Page("index.page"))
+        Dim index As Page = New Page("index.page")
+        LoadPage(index)
     End Sub
 
     '' When a cell is double clicked, remove the row and detract the price.
@@ -171,10 +172,12 @@ Public Class Products
         LoadPage(New Page("index.page^Index"))
     End Sub
 
+    ' Go back to sign in
     Private Sub btnSignIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSignIn.Click
         GotoSignIn()
     End Sub
 
+    ' Clear basket, go to index, hide, and then go to sign in.
     Public Sub GotoSignIn()
         btnClearBasket.PerformClick()
         btnIndex.PerformClick()
@@ -183,15 +186,20 @@ Public Class Products
         SignIn.Show()
     End Sub
 
+    ' When closing the form by the X, go to sign in
     Private Sub Products_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         GotoSignIn()
     End Sub
 
+    ' The submit button being pressed
     Private Sub btnSubmit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSubmit.Click
-        Console.WriteLine(lblFullPrice.Text)
+        ' Create a new instance of ShowAmount with the current price.
         Dim amtPage As ShowAmount = New ShowAmount(CDbl(lblFullPrice.Text))
+        ' Show it as a diaglog
         amtPage.ShowDialog()
+        ' Clear the basket
         btnClearBasket.PerformClick()
+        ' Go back to the index
         btnIndex.PerformClick()
     End Sub
 End Class

@@ -42,6 +42,7 @@ Public Class Utility
             If d.EvaluateConditional Then
                 ProductsInstance.lblDealPrice.Text += d.EvaluateOutput()
             End If
+            Console.WriteLine(d.ToString())
         Next
         ProductsInstance.txtDealPrice.Text = "£" + String.Format("{0:0.00}", Math.Abs(CDbl(ProductsInstance.lblDealPrice.Text)))
 
@@ -73,6 +74,7 @@ Public Class Utility
             Dim split() As String = System.Text.RegularExpressions.Regex.Split(line.ToLower, " then ")
             Dim deal As Deal = New Deal(split(0), split(1))
             Deals.Add(deal)
+            Console.WriteLine(deal.ToString())
         Next
     End Sub
 
@@ -86,6 +88,7 @@ Public Class Utility
         Return Deals
     End Function
 
+    ' Used for when I'm changing the things in deals
     Public Shared Function ReplaceItemString(ByVal input As String) As String
         Dim matches As System.Text.RegularExpressions.MatchCollection = System.Text.RegularExpressions.Regex.Matches(input, "item\[([0-9]*)] (amt|price)") ' Look for any of this in regex, works for my conditional
 
@@ -111,6 +114,9 @@ Public Class Utility
 
     Public Shared Function FindAmountID(ByVal ID As Integer) As Integer
         Dim amount = 0
+        If ProductsInstance Is Nothing Then
+            Return 0
+        End If
         For Each Item As DataGridViewRow In ProductsInstance.dataBasket.Rows
             Dim cellID = Item.Cells(0).Value
             amount -= CInt(CInt(cellID) = ID) ' Finds the amount of given item per amount in basket,
@@ -121,6 +127,7 @@ Public Class Utility
         Return amount
     End Function
 
+    ' From the ID find the price.
     Public Shared Function FindPriceID(ByVal ID As Integer) As Double
         Return Products(ID - 1).Split("^")(1) ' Looks through all the products, takes away one from the index because arrays start at 0, separate the carets and get the price, which is in the 2nd (or 1st) slot.
     End Function

@@ -26,8 +26,6 @@ Public Class Page
                 Continue For
             End If
 
-
-
             Dim type As EPOS3.Item.ItemType = If(Parts(0).ToLower() = "item", EPOS3.Item.ItemType.Item, EPOS3.Item.ItemType.Page)
             Dim pathorname = If(type = EPOS3.Item.ItemType.Item, Parts(1) + "^" + Utility.LookupProduct(Parts(1)).PathOrName, Item.Split("^")(0) + "^" + Item.Split("^")(1))
 

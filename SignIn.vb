@@ -11,13 +11,13 @@ Public Class SignIn
 
         ' Make a index page if it doesn't exist and send a message to the console.
         If Not File.Exists("Products/index.page") Then
-            File.Create("Products/index.page")
+            File.Create("Products/index.page").Close()
             Console.WriteLine("Created index page.")
         End If
 
         ' Make an empty products file if it doesn't exist and send a message to the console.
         If Not File.Exists("Products/products.prod") Then
-            File.Create("Products/products.prod")
+            File.Create("Products/products.prod").Close()
             Console.WriteLine("Created products file.")
         End If
 
@@ -25,32 +25,28 @@ Public Class SignIn
         Utility.LoadProducts()
 
         If Not File.Exists("Products/deals.deal") Then
-            File.Create("Products/deals.deal")
+            File.Create("Products/deals.deal").Close()
             Console.WriteLine("Created deals file.")
         End If
 
         ' Load all of the deals within the program.
-        Try
-            Utility.LoadDeals()
+        Utility.LoadDeals()
 
-            For Each d As Deal In Utility.GetDeals()
-                d.EvaluateConditional()
-            Next
-        Catch ex As Exception
-            MsgBox("Error occured when loading the deals.", MsgBoxStyle.OkOnly, "Error!")
-            Application.Exit()
-        End Try
+        For Each d As Deal In Utility.GetDeals()
+            d.EvaluateConditional()
+        Next
 
-
-        
         Try
             ' Load the databases
             Utility.LoadDatabases()
-        Catch ex As Exception
-            MsgBox("Error occured when loading the database tables.", MsgBoxStyle.OkOnly, "Error!")
+        Catch ex As InvalidOperationException
+            MsgBox("Access Database Engine 12.0 not installed!", MsgBoxStyle.Critical, "Error!")
+            Application.Exit()
+        Catch ex2 As Data.OleDb.OleDbException
+            MsgBox("Cannot find the database!", MsgBoxStyle.Critical, "Error!")
             Application.Exit()
         End Try
-        
+
     End Sub
 
     Private Sub btnSignIn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSignIn.Click
@@ -83,22 +79,12 @@ Public Class SignIn
             End If
             Products.Show()
             Return
-        End If
-
-        ' If not, open manage users,
-        If userType = 2 Then
+        Else
+            ' If not, open manage users,
+            ' Let the super user condition be dependent on whether the user type is 1
+            ManageUsers.isSuperuser = userType = 1
             ManageUsers.Show()
             Return
         End If
-
-        ' If it's a superuser, then open manage users with a boolean property
-        If userType = 1 Then
-            ManageUsers.isSuperuser = True
-            ManageUsers.Show()
-            Return
-        End If
-
-        ' ???
-        MsgBox("If you got here, congrats, you broke the program")
     End Sub
 End Class

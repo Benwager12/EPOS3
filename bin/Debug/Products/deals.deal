@@ -1,1 +1,2 @@
 IF true THEN 0 - (item[1] PRICE * item[1] AMT) / 2
+IF item[5] AMT > 2 THEN 0 - item[5] PRICE

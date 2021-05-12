@@ -81,23 +81,29 @@
     End Function
 
     Function GetResult() As Token
+        ' If any of the tokens are unknown, throw an exception
         For Each t As Token In Me
             If t.state = TokenState.UNKNOWN_STATE Then
+                MsgBox("Something went wrong when processing token", MsgBoxStyle.Critical, "Token Error")
                 Throw New Exception("Unknown state")
             End If
         Next
 
         If CheckNextToEachOther(TokenState.NUMERIC) Then
+            MsgBox("Something went wrong when processing token", MsgBoxStyle.Critical, "Token Error")
             Throw New Exception("Two numbers next to each other.")
         End If
 
         If CheckNextToEachOther(TokenState.MATHEMATICAL_OPERATOR) Then
+            MsgBox("Something went wrong when processing token", MsgBoxStyle.Critical, "Token Error")
             Throw New Exception("Two operators next to each other.")
         End If
 
         Dim result = DoBrackets().ExpandTokens()
 
+        ' Checking if first item is an operator
         If ParserUtility.isOperator(Item(0).ToString()) Then
+            MsgBox("Something went wrong when processing token", MsgBoxStyle.Critical, "Token Error")
             Throw New Exception("First item cannot be a operator")
         End If
 
@@ -105,6 +111,7 @@
         ' Dim result = ExpandTokens()
         While changes.Count > 0
             For Each op As String In ParserUtility.operators
+                ' Keep looping until no changes left
                 If changes.Count = 0 Then
                     Continue For
                 End If
@@ -112,6 +119,7 @@
                     Continue For
                 End If
 
+                ' Set the result and find new changes
                 result = result.Replace(changes(0).expression, changes(0).output)
                 changes = ParserUtility.FindChanges(result)
             Next
@@ -141,34 +149,39 @@
         '    result = New TokenList(result.ExpandTokens().Replace(currentExpression, currentResult))
         'Next
 
+        ' Return the result
         Return (New Token(result.ToLower(), ParserUtility.GetStringTokenType(result)))
     End Function
 
-
-
+    ' Find all the brackets and get a result from them
     Function DoBrackets() As TokenList
+        ' Find all brackets
         Dim brackets As List(Of String) = ParserUtility.GetBrackets(Me)
+        ' Expanding the tokens
         Dim beforeWrite As String = ExpandTokens()
 
         Dim emptyList As New List(Of Token)
 
+        ' Replacing the bracket with the answer
         For Each bracket As String In brackets
             beforeWrite = beforeWrite.Replace("( " + bracket + " )", New TokenList(bracket).GetResult().ToString())
         Next
 
+        ' The result from the bracket plus anything else in there
         For Each t As Token In New TokenList(beforeWrite)
             emptyList.Add(t)
         Next
 
+        ' Return it
         Return New TokenList(emptyList)
     End Function
 
+    ' Used for testing
     Overrides Function ToString() As String
         Dim result As String = ""
         For Each i As Token In Me
             result += i.tokenString + " --- " + CStr(i.state) + Environment.NewLine
         Next
-        'result = result.Substring(0, result.Length - 2)
         Return result
     End Function
 End Class
